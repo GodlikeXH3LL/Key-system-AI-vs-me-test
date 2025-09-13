@@ -74,7 +74,9 @@ discordButtonCorner.Parent = discordButton
 submitButton.MouseButton1Click:Connect(function()
     local key = textBox.Text
     if key ~= "H3LL" then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GodlikeXH3LL/Enchanted-Ninja-Legends/refs/heads/main/By%20Godlike"))()
+        screenGUI:Destroy()
+      
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/GodlikeXH3LL/Enchanted-Ninja-Legends/refs/heads/main/By%20Godlike"))()
     else
         print("Wrong Key")
     end
