@@ -1,96 +1,43 @@
 local UserInputService = game:GetService("UserInputService")
 local GuiService = game:GetService("GuiService")
 
--- Create ScreenGui
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 screenGui.IgnoreGuiInset = true
 
--- Create main frame
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(1, 0, 1, 0)
 frame.Position = UDim2.new(0, 0, 0, 0)
-frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 frame.BorderSizePixel = 0
+frame.BackgroundTransparency = 1
 frame.Parent = screenGui
 
--- Add rounded corners to frame
-local frameCorner = Instance.new("UICorner")
-frameCorner.CornerRadius = UDim.new(0, 20)
-frameCorner.Parent = frame
+local textbox = Instance.new("TextBox")
+textbox.Size = UDim2.new(0.4, 0, 0.1, 0)
+textbox.Position = UDim2.new(0.5, 0, 0.4, 0)
+textbox.AnchorPoint = Vector2.new(0.5, 0.5)
+textbox.BackgroundColor3 = Color3.fromRGB(128, 128, 128)
+textbox.PlaceholderText = "Enter Key"
+textbox.TextScaled = true
+textbox.BorderSizePixel = 0
+textbox.Parent = frame
 
--- Create text box
-local textBox = Instance.new("TextBox")
-textBox.Size = UDim2.new(0.4, 0, 0.1, 0)
-textBox.Position = UDim2.new(0.5, 0, 0.4, 0)
-textBox.AnchorPoint = Vector2.new(0.5, 0.5)
-textBox.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
-textBox.TextColor3 = Color3.new(1, 1, 1)
-textBox.PlaceholderText = "Enter Key"
-textBox.TextScaled = true
-textBox.BorderSizePixel = 0
-textBox.Parent = frame
+local input = Instance.new("TextButton")
+input.Size = UDim2.new(0.4, 0, 0.1, 0)
+input.Position = UDim2.new(0.5, 0, 0.55, 0)
+input.AnchorPoint = Vector2.new(0.5, 0.5)
+input.BackgroundColor3 = Color3.fromRGB(128, 128, 128)
+input.Text = "Submit"
+input.TextScaled = true
+input.BorderSizePixel = 0
+input.Parent = frame
 
--- Add rounded corners to text box
-local textBoxCorner = Instance.new("UICorner")
-textBoxCorner.CornerRadius = UDim.new(0, 10)
-textBoxCorner.Parent = textBox
-
--- Create submit button
-local submitButton = Instance.new("TextButton")
-submitButton.Size = UDim2.new(0.2, 0, 0.08, 0)
-submitButton.Position = UDim2.new(0.5, 0, 0.55, 0)
-submitButton.AnchorPoint = Vector2.new(0.5, 0.5)
-submitButton.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
-submitButton.TextColor3 = Color3.new(1, 1, 1)
-submitButton.Text = "Submit"
-submitButton.TextScaled = true
-submitButton.BorderSizePixel = 0
-submitButton.Parent = frame
-
--- Add rounded corners to submit button
-local submitButtonCorner = Instance.new("UICorner")
-submitButtonCorner.CornerRadius = UDim.new(0, 10)
-submitButtonCorner.Parent = submitButton
-
--- Create Discord button
-local discordButton = Instance.new("TextButton")
-discordButton.Size = UDim2.new(0.2, 0, 0.08, 0)
-discordButton.Position = UDim2.new(0.5, 0, 0.65, 0)
-discordButton.AnchorPoint = Vector2.new(0.5, 0.5)
-discordButton.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
-discordButton.TextColor3 = Color3.new(1, 1, 1)
-discordButton.Text = "Discord"
-discordButton.TextScaled = true
-discordButton.BorderSizePixel = 0
-discordButton.Parent = frame
-
--- Add rounded corners to Discord button
-local discordButtonCorner = Instance.new("UICorner")
-discordButtonCorner.CornerRadius = UDim.new(0, 10)
-discordButtonCorner.Parent = discordButton
-
--- Submit button functionality
-submitButton.MouseButton1Click:Connect(function()
-    local key = textBox.Text
-    if key ~= "H3LL" then
-        screenGUI:Destroy()
-      
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/GodlikeXH3LL/Enchanted-Ninja-Legends/refs/heads/main/By%20Godlike"))()
+input.MouseButton1Click:Connect(function()
+    local text = textbox.Text
+    if text == "H3LL" then   
+        screenGui:Destroy()
     else
-        print("Wrong Key")
-    end
-end)
-
--- Discord button functionality
-discordButton.MouseButton1Click:Connect(function()
-    local discordLink = "https://discord.gg/your-discord-invite" -- Replace with your Discord invite link
-    if GuiService:IsTenFootInterface() or UserInputService.TouchEnabled then
-        print("Clipboard not supported on this device")
-    else
-        pcall(function()
-            setclipboard(discordLink)
-            print("Copied Discord link to clipboard: " .. discordLink)
-        end)
+        textbox.PlaceholderText = "Key Incorrect"
     end
 end)
